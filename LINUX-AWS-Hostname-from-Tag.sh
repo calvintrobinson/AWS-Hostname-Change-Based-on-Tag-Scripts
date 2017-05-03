@@ -43,7 +43,7 @@ hostnamebak="$hostnamefile.bak"
 KEYID=ACCESSKEYIDABCDEFGHIJKLMNOP
 SAK=MYSECRETACCESSKEY
 curluri="https://bootstrap.pypa.io/get-pip.py"
-curlbin="get-pip.py"
+pipfile="get-pip.py"
 PIPDIR=/var/tmp/
 curl=$(which curl)
 cat=$(which cat)
@@ -73,7 +73,7 @@ echo
 # ===========================================
 
 #Curl Pip Binary ============================
-$curl $curluri -o ${PIPDIR}${curlbin}
+$curl $curluri -o ${PIPDIR}${pipfile}
 echo "Pip Downloaded to "$PIPDIR
 echo
 #============================================
