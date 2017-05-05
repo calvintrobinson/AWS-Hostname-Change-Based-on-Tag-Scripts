@@ -41,7 +41,7 @@
   
 
 #Constants ==================================
-hostn=$(cat /etc/hostname)
+hostn="$(uname -n)"
 hostsfile="/etc/hosts"
 hostnamefile="/etc/hostname"
 hostsfilebak="$hostsfile.bak"
@@ -122,16 +122,10 @@ echo 'New hostname of '$HN' has been assigned to the /etc/hostname file of this 
 echo
 #============================================
 
-#Remove existing hosts file==================
-rm -f $hostsfile
-echo '/etc/hosts file removed'
+#Modifying /etc/hosts========================
+$sed -i 's/'"$hostn/$HN"' /g' $hostsfile
+echo 'New hostname of '$HN' has been assigned to the /etc/hosts file of this machine'
 echo
-
-$cat <<EOF >  $hostsfile
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
-127.0.1.1   $HN
-
-EOF
 # ===========================================
 
 #Confirmational Steps========================
