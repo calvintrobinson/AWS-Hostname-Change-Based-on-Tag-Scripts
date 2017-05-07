@@ -37,8 +37,8 @@
 
 #Constants===================================
 $hostn = $env:computername
-$KEYID = "AKIAJ72GQQOUQ5ZBKWZA"
-$SAK = "XxlJsAHfQSwCHPDki/5SdGpkUwGgecFL/Dfx8y75"
+$KEYID = "ACCESSKEYID"
+$SAK = "ACCESSKEY"
 $INSTANCE_ID = Invoke-RestMethod -uri http://169.254.169.254/latest/meta-data/instance-id
 $reg = Invoke-RestMethod -uri http://169.254.169.254/latest/dynamic/instance-identity/document | select region
 $REGION = $reg -replace ".*=" -replace "}"
