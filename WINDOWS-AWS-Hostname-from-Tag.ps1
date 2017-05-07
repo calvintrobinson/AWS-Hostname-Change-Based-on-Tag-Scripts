@@ -13,7 +13,6 @@
 # Web - - calvintrobinson.com
 # GitHub - - calvintrobinson.com/github
 # Twitter - - @calvintrobinson
-#
 # ===========================================
 #
 # ===========================================
@@ -21,7 +20,6 @@
 # =========
 # This script allows an administrator to change the hostname of a Windows AWS 
 # instance to some value passed from an AWS tag 
-#
 # ===========================================
 #
 # ===========================================
