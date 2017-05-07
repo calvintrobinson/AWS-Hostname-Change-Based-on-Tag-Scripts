@@ -37,16 +37,16 @@
 
 #Constants===================================
 $hostn = $env:computername
-$KEYID = "ACCESSKEYID"
-$SAK = "SECRETACCESSKEYGOESHERE"
+$KEYID = "AKIAJ72GQQOUQ5ZBKWZA"
+$SAK = "XxlJsAHfQSwCHPDki/5SdGpkUwGgecFL/Dfx8y75"
 $INSTANCE_ID = Invoke-RestMethod -uri http://169.254.169.254/latest/meta-data/instance-id
 $reg = Invoke-RestMethod -uri http://169.254.169.254/latest/dynamic/instance-identity/document | select region
 $REGION = $reg -replace ".*=" -replace "}"
 $dnetwcl = New-Object System.Net.WebClient
-$pypath = http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi
-$awspath = https://s3.amazonaws.com/aws-cli/AWSCLI64.msi
-$awsfile = AWSCLI64.msi
-$pyfile = python-2.7.6.amd64.msi
+$pypath = "http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi"
+$awspath = "https://s3.amazonaws.com/aws-cli/AWSCLI64.msi"
+$awsfile = "AWSCLI64.msi"
+$pyfile = "python-2.7.6.amd64.msi"
 $TARGETDIR = 'C:\Script_Files\'
 # ===========================================
 
@@ -63,11 +63,15 @@ write-host "Folder Path of $TARGETDIR has been created"
 #Download Files==============================
 $dnetwcl.DownloadFile("$pypath", "$TARGETDIR\$pyfile")
 $dnetwcl.DownloadFile("$awspath", "$TARGETDIR\$awsfile")
+Write-Host "Both $pyfile and $awsfile were downloaded to $TARGETDIR"
 #============================================
 
 #Install Python and AWS CLI==================
-msiexec /i $TARGETDIR\$pyfile /qn ADDLOCAL="all"
-msiexec /i $TARGETDIR\$awsfile /qn ADDLOCAL="all"
+Start-Process -FilePath "msiexec.exe" -ArgumentList "/i $TARGETDIR\$pyfile /qn /quiet /norestart" -Wait
+Write-Host "Python Installed"
+
+Start-Process -FilePath "msiexec.exe" -ArgumentList "/i $TARGETDIR\$awsfile /qn /quiet /norestart" -Wait
+Write-Host "AWS CLI Installed"
 #============================================
 
 #Hostname Generation=========================
@@ -84,6 +88,7 @@ write-host "Hostname Changed to $HN"
 
 #Cleanup Folder Path=========================
 Remove-Item $TARGETDIR -Recurse -Force
+Write-Host "$TARGETDIR Folder Cleaned Up"
 #============================================
 
 #Reboot======================================
