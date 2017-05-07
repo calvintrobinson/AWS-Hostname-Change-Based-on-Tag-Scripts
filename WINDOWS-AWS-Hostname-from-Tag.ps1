@@ -25,7 +25,6 @@
 # ===========================================
 # Notes
 # =========
-# - This script assumes the AWS CLI is already installed
 # - In order for this script to be useful, you must create a tag on the AWS Instance 
 # that contains as a value, the hostname you wish to use.  In my example, the tag
 # is called 'Name' - The value that is assigned is the dynamically assigned hostname
