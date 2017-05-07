@@ -73,7 +73,6 @@ msiexec /i $TARGETDIR\$pyfile /qn ADDLOCAL="all"
 msiexec /i $TARGETDIR\$awsfile /qn ADDLOCAL="all"
 #============================================
 
-
 #Hostname Generation=========================
 $HOS = aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=Name" | Select-String -Pattern "Value"
 $HN = ("$HOS").Replace('"Value": "',"").Replace('",',"").Replace('            ',"").Replace(' ',"")
