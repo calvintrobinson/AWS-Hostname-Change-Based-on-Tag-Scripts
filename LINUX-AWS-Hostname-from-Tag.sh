@@ -51,14 +51,14 @@ SAK=MYSECRETACCESSKEY
 curluri="https://bootstrap.pypa.io/get-pip.py"
 pipfile="get-pip.py"
 PIPDIR=/var/tmp/
-curl=$(which curl)
-cat=$(which cat)
-sed=$(which sed)
+curl=$(command -v curl)
+cat=$(command -v cat)
+sed=$(command -v sed)
 TAG=Name
 # ===========================================
 
 #Check for Python============================
-if which python > /dev/null 2>&1;
+if command -v python > /dev/null 2>&1;
 then
     #Python is installed
     python_version=`python --version 2>&1 | awk '{print $2}'`
@@ -91,7 +91,7 @@ echo
 # ===========================================
 
 #Install AWS CLI
-$(which pip) install awscli
+$(command -v pip) install awscli
 echo "AWS CLI Tools Successfully Installed"
 echo
 # ===========================================
@@ -103,7 +103,7 @@ echo
 
 #Setting AWS Constants=======================
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
-REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
+REGION=$($curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
 HN=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" --region=$REGION "Name=key,Values=$TAG" --output=text | cut -f5)
 echo 'Instance ID is: '$INSTANCE_ID
 echo 'Region has been determined to be: '$REGION
@@ -140,7 +140,7 @@ echo
 
 #Cleanup Steps===============================
 #The removal of the AWS CLI can be commented out if you intend on retaining them
-$(which pip) uninstall awscli -y
+$(command -v pip) uninstall awscli -y
 echo "AWS CLI Tools Uninstalled"
 echo
 # ===========================================
