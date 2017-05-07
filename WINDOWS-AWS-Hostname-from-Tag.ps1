@@ -77,8 +77,7 @@ Write-Host "AWS CLI Installed"
 #Hostname Generation=========================
 $HOS = aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=Name" | Select-String -Pattern "Value"
 $HN = ("$HOS").Replace('"Value": "',"").Replace('",',"").Replace('            ',"").Replace(' ',"")
-write-host 'Old Hostname is :'$hostn
-write-host 'Hostname that will be applied is: '$HN
+write-host 'Old Hostname of $hostn is being Replaced with New Hostname of $HN'
 #============================================
 
 #Change Hostname=============================
