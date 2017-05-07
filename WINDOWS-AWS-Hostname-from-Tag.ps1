@@ -48,6 +48,7 @@ $awspath = "https://s3.amazonaws.com/aws-cli/AWSCLI64.msi"
 $awsfile = "AWSCLI64.msi"
 $pyfile = "python-2.7.6.amd64.msi"
 $TARGETDIR = 'C:\Script_Files\'
+$TAGNAME = "Name"
 # ===========================================
 
 #Set Environment Variables for AWS===========
@@ -75,7 +76,7 @@ Write-Host "AWS CLI Installed"
 #============================================
 
 #Hostname Generation=========================
-$HOS = aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=Name" | Select-String -Pattern "Value"
+$HOS = aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$TAGNAME" | Select-String -Pattern "Value"
 $HN = ("$HOS").Replace('"Value": "',"").Replace('",',"").Replace('            ',"").Replace(' ',"")
 write-host 'Old Hostname of $hostn is being Replaced with New Hostname of $HN'
 #============================================
