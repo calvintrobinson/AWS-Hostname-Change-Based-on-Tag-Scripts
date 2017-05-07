@@ -54,7 +54,7 @@ PIPDIR=/var/tmp/
 curl=$(command -v curl)
 cat=$(command -v cat)
 sed=$(command -v sed)
-TAG=Name
+TAG="Name"
 # ===========================================
 
 #Check for Python============================
