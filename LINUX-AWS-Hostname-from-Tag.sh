@@ -114,6 +114,8 @@ echo
 #Backup Files Prior to Editing them =========
 $cat $hostsfile > $hostsfilebak
 $cat $hostnamefile > $hostnamebak
+echo 'Hostname config files have been successfully backed up'
+echo
 # ===========================================
 
 #Modifying /etc/hostname=====================
